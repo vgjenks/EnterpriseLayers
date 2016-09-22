@@ -5,6 +5,11 @@ using System.Linq;
 using EnterpriseLayers.Model.Domain;
 using EnterpriseLayers.Contract.DataAccess;
 using EnterpriseLayers.Utility.Logging;
+using SqlProviderServices = System.Data.Entity.SqlServer.SqlProviderServices;
+/**
+ * The using statement above solves this frustrating NuGet bug: 
+ * http://stackoverflow.com/questions/14033193/entity-framework-provider-type-could-not-be-loaded
+ **/
 
 namespace EnterpriseLayers.Data.Context {
 	public class EnterpriseLayersContext : DbContext, IDbContext {
