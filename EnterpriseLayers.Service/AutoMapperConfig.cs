@@ -8,13 +8,13 @@ namespace EnterpriseLayers.Service {
 			Mapper.Initialize(cfg => {
 				cfg.CreateMap<ProductModel, ProductModelModel>()
 					//.ForMember(pm => pm.Illustrations, model => model.MapFrom(m => m.Illustrations))
-					//.ForMember(dest => dest.Illustrations, opt => opt.Ignore()) //NOTE: Had to ignore - many-to-many causing StackOverflowException!
-					.MaxDepth(2)
+					//.ForMember(dest => dest.Illustrations, opt => opt.Ignore()) 
+					.MaxDepth(2) //NOTE: Had to limit depth - many-to-many causing StackOverflowException!
 					.ReverseMap();
 				cfg.CreateMap<Illustration, IllustrationModel>()
 					//.ForMember(pm => pm.ProductModels, model => model.MapFrom(m => m.ProductModels))
-					//.ForMember(dest => dest.ProductModels, opt => opt.Ignore()) //NOTE: Had to ignore - many-to-many causing StackOverflowException!
-					.MaxDepth(2)
+					//.ForMember(dest => dest.ProductModels, opt => opt.Ignore()) 
+					.MaxDepth(2) //NOTE: Had to limit depth - many-to-many causing StackOverflowException!
 					.ReverseMap();
 			});
 		}
