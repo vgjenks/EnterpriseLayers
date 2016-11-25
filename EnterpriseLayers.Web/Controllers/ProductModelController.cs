@@ -1,9 +1,5 @@
 ﻿using EnterpriseLayers.Contract.DataAccess;
 using EnterpriseLayers.Contract.Service;
-using EnterpriseLayers.Data.Access;
-using EnterpriseLayers.Model.Domain;
-using EnterpriseLayers.Service;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace EnterpriseLayers.Web.Controllers {

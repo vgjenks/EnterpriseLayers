@@ -37,7 +37,7 @@ namespace EnterpriseLayers.Service {
 				.Get(x => x.ProductModels)
 				.Where(x => x.ProductModels.Select(y => y.ProductModelID == productModelID).FirstOrDefault())
 				.ToList();
-			var model = Mapper.Map<List<IllustrationModel>>(illusData);
+			var model = illusData.To<List<IllustrationModel>>();
 			return model;
 
 			//...from ProductModel side
