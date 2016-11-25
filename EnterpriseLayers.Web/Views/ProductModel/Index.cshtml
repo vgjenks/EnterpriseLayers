@@ -1,0 +1,14 @@
+﻿@model List<EnterpriseLayers.Model.Model.IllustrationModel>
+@{
+}
+
+<h2>Illustrations</h2>
+
+<div class="container row">
+	<ul>
+		@foreach (var illustration in Model) {
+			<li><strong>@illustration.IllustrationID</strong>&nbsp;@illustration.ModifiedDate.ToString("g")</li>
+		}
+	</ul>
+</div>
+

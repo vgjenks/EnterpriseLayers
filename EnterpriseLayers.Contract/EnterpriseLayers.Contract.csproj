@@ -49,12 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\IDbContext.cs" />
     <Compile Include="DataAccess\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Service\IContactTypeService.cs" />
     <Compile Include="Service\ICustomerService.cs" />
+    <Compile Include="Service\IProductModelService.cs" />
     <Compile Include="Service\ISalesOrderService.cs" />
   </ItemGroup>
   <ItemGroup>

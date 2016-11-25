@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace EnterpriseLayers.Data.Access {
 	public class AdoUnitOfWork : IUnitOfWork {
@@ -13,12 +14,8 @@ namespace EnterpriseLayers.Data.Access {
 		private bool _ownsConnection;
 		private IDbTransaction _transaction;
 
-		public IDbContext Context {
+		DbContext IUnitOfWork.Context {
 			get {
-				throw new NotImplementedException();
-			}
-
-			set {
 				throw new NotImplementedException();
 			}
 		}

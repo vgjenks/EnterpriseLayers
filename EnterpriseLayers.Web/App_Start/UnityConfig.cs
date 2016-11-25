@@ -8,6 +8,8 @@ using EnterpriseLayers.Contract.Service;
 using EnterpriseLayers.Service;
 using EnterpriseLayers.Contract.DataAccess;
 using EnterpriseLayers.Data.Context;
+using EnterpriseLayers.Data.Access;
+using System.Configuration;
 
 namespace EnterpriseLayers.Web.App_Start
 {
@@ -43,9 +45,18 @@ namespace EnterpriseLayers.Web.App_Start
 			// container.LoadConfiguration();
 
 			// TODO: Register your types here
-			//container.RegisterType<IRepository<Customer>, GenericRepository<Customer>>();
-			//container.RegisterType<ICustomerService, CustomerService>();
-			//container.RegisterType<IDbContext, EnterpriseLayersContext>();
+			//container.RegisterType<Mapper, Mapper>();
+			container.RegisterType<IUnitOfWork>(
+				new PerRequestLifetimeManager(),
+				new InjectionFactory(c => {
+					string dbPlatform = ConfigurationManager.AppSettings["databasePlatform"];
+					var uow = new UnitOfWorkFactory(dbPlatform);
+					return uow.UnitOfWork;
+				})
+			);
+			container.RegisterType<IRepository<ProductModel>, GenericRepository<ProductModel>>();
+			container.RegisterType<IRepository<Illustration>, GenericRepository<Illustration>>();
+			container.RegisterType<IProductModelService, ProductModelService>();
 		}
 	}
 }

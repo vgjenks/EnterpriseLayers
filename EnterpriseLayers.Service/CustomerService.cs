@@ -12,16 +12,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public class CustomerService : ICustomerService {
+	public class CustomerService : BaseService, ICustomerService {
 		private IRepository<Customer> _customerRepository;
 		private IRepository<SalesOrderHeader> _salesOrderRepository;
 
-		public CustomerService(IUnitOfWork unitOfWork) {
-			if (unitOfWork == null)
-				throw new ArgumentNullException("Missing Unit of Work Implementation");
-
-			_customerRepository = new GenericRepository<Customer>(unitOfWork);
-			_salesOrderRepository = new GenericRepository<SalesOrderHeader>(unitOfWork);
+		public CustomerService(IUnitOfWork uow) : base(uow) {
+			_customerRepository = new GenericRepository<Customer>(uow);
+			_salesOrderRepository = new GenericRepository<SalesOrderHeader>(uow);
 		}
 
 		public List<Customer> GetLastCustomers(int take = 10) {

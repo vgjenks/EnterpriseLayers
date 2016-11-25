@@ -12,9 +12,9 @@ using SqlProviderServices = System.Data.Entity.SqlServer.SqlProviderServices;
  **/
 
 namespace EnterpriseLayers.Data.Context {
-	public class EnterpriseLayersContext : DbContext, IDbContext {
-		public EnterpriseLayersContext()
-			: base("name=EnterpriseLayersData") {
+	public class MsSqlEFContext : DbContext {
+		public MsSqlEFContext() : base("name=EnterpriseLayersData") {
+			this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s); //print EF sql output
 			//EventLog.Log($"DbContext created. Status: {Database.Connection.State}");
 		}
 
@@ -23,8 +23,13 @@ namespace EnterpriseLayers.Data.Context {
 		public virtual DbSet<SalesOrderDetail> SalesOrderDetail { get; set; }
 		public virtual DbSet<SalesOrderHeader> SalesOrderHeader { get; set; }
 		public virtual DbSet<ContactType> ContactType { get; set; }
+		public virtual DbSet<ProductModel> ProductModels { get; set; }
+		public virtual DbSet<Illustration> Illustration { get; set; }
+		public virtual DbSet<ProductModelIllustration> ProductModelIllustrations { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+			//modelBuilder.HasDefaultSchema("Production"); //global
+
 			modelBuilder.Entity<Person>()
 				.Property(e => e.PersonType)
 				.IsFixedLength();
@@ -74,11 +79,15 @@ namespace EnterpriseLayers.Data.Context {
 			modelBuilder.Entity<SalesOrderHeader>()
 				.Property(e => e.TotalDue)
 				.HasPrecision(19, 4);
-		}
 
-		void IDbContext.SaveChanges() {
-			SaveChanges();
-			//EventLog.Log($"DbContext.SaveChanges() called. Status: {Database.Connection.State}");
+			modelBuilder.Entity<ProductModel>()
+						.HasMany(pm => pm.Illustrations)
+						.WithMany(i => i.ProductModels)
+						.Map(cs => {
+							cs.MapLeftKey("ProductModelID");
+							cs.MapRightKey("IllustrationID");
+							cs.ToTable("ProductModelIllustration", "Production");
+						});
 		}
 	}
 }

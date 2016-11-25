@@ -12,11 +12,11 @@ using EnterpriseLayers.Contract.DataAccess;
 
 namespace EnterpriseLayers.Repository {
 	public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class {
-		internal EnterpriseLayersContext _dbContext;
+		internal DbContext _dbContext;
 		internal DbSet<TEntity> _dbSet;
 
 		public GenericRepository(IUnitOfWork unitOfWork) {
-			_dbContext = unitOfWork.Context as EnterpriseLayersContext;
+			_dbContext = unitOfWork.Context;
 			_dbSet = _dbContext.Set<TEntity>();
 		}
 

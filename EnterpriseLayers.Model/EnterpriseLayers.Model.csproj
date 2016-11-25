@@ -53,9 +53,14 @@
   <ItemGroup>
     <Compile Include="Domain\ContactType.cs" />
     <Compile Include="Domain\Customer.cs" />
+    <Compile Include="Domain\Illustration.cs" />
     <Compile Include="Domain\Person.cs" />
+    <Compile Include="Domain\ProductModel.cs" />
+    <Compile Include="Domain\ProductModelIllustration.cs" />
     <Compile Include="Domain\SalesOrderDetail.cs" />
     <Compile Include="Domain\SalesOrderHeader.cs" />
+    <Compile Include="Model\IllustrationModel.cs" />
+    <Compile Include="Model\ProductModelModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\HomeIndexViewModel.cs" />
   </ItemGroup>
