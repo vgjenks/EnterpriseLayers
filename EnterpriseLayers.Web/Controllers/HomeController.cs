@@ -1,14 +1,10 @@
-﻿using EnterpriseLayers.Contract.Service;
-using EnterpriseLayers.Data.Access;
+﻿using EnterpriseLayers.Data.Access;
 using EnterpriseLayers.Model.Domain;
 using EnterpriseLayers.Model.ViewModel;
 using EnterpriseLayers.Service;
-using EnterpriseLayers.Utility.Logging;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EnterpriseLayers.Web.Controllers {

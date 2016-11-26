@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public class SalesOrderService : BaseService, ISalesOrderService {
+	public class SalesOrderService : UnitOfWorkService, ISalesOrderService {
 		private IRepository<SalesOrderHeader> _salesOrderHeaderRepository;
 		private IRepository<SalesOrderDetail> _salesOrderDetailRepository;
 

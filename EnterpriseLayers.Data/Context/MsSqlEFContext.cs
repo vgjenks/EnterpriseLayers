@@ -1,10 +1,5 @@
-using System;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using EnterpriseLayers.Model.Domain;
-using EnterpriseLayers.Contract.DataAccess;
-using EnterpriseLayers.Utility.Logging;
 using SqlProviderServices = System.Data.Entity.SqlServer.SqlProviderServices;
 /**
  * The using statement above solves this frustrating NuGet bug: 

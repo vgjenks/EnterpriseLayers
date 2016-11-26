@@ -1,11 +1,5 @@
-﻿using EnterpriseLayers.Contract.DataAccess;
-using EnterpriseLayers.Model.Domain;
-using System;
-using System.Collections.Generic;
+﻿using EnterpriseLayers.Model.Domain;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Data.Context {
 	public class MySqlEFContext : DbContext {

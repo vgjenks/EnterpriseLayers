@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public class CustomerService : BaseService, ICustomerService {
+	public class CustomerService : UnitOfWorkService, ICustomerService {
 		private IRepository<Customer> _customerRepository;
 		private IRepository<SalesOrderHeader> _salesOrderRepository;
 

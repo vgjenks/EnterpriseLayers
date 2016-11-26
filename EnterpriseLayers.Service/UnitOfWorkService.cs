@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public abstract class BaseService {
-		public BaseService(IUnitOfWork uow) {
+	public abstract class UnitOfWorkService {
+		public UnitOfWorkService(IUnitOfWork uow) {
 			if (uow == null)
 				throw new ArgumentNullException("Missing Unit of Work Implementation");
 		}

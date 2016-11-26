@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="AutoMapperExtensions.cs" />
-    <Compile Include="BaseService.cs" />
+    <Compile Include="UnitOfWorkService.cs" />
     <Compile Include="ContactTypeService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="ProductModelService.cs" />

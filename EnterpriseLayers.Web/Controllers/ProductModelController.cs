@@ -1,9 +1,8 @@
-﻿using EnterpriseLayers.Contract.DataAccess;
-using EnterpriseLayers.Contract.Service;
+﻿using EnterpriseLayers.Contract.Service;
 using System.Web.Mvc;
 
 namespace EnterpriseLayers.Web.Controllers {
-	public class ProductModelController : UnitOfWorkController {
+	public class ProductModelController : Controller /*: UnitOfWorkController*/ {
 		private IProductModelService _productModelService;
 
 		/**
@@ -16,7 +15,7 @@ namespace EnterpriseLayers.Web.Controllers {
 		/**
 		 * Services with DI
 		 * */
-		public ProductModelController(IUnitOfWork uow, IProductModelService productModelService) : base(uow) {
+		public ProductModelController(IProductModelService productModelService) {
 			_productModelService = productModelService;
 		}
 

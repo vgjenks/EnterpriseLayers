@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public class ContactTypeService : BaseService, IContactTypeService {
+	public class ContactTypeService : UnitOfWorkService, IContactTypeService {
 		private IRepository<ContactType> _contactTypeRepository;
 
 		public ContactTypeService(IUnitOfWork uow) : base(uow) {
