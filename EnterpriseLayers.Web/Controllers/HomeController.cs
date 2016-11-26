@@ -1,13 +1,10 @@
-﻿using EnterpriseLayers.Contract.Service;
-using EnterpriseLayers.Data.Access;
+﻿using EnterpriseLayers.Data.Access;
 using EnterpriseLayers.Model.Domain;
 using EnterpriseLayers.Model.ViewModel;
 using EnterpriseLayers.Service;
-using EnterpriseLayers.Utility.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
 using System.Web.Mvc;
 
 namespace EnterpriseLayers.Web.Controllers {
@@ -19,14 +16,15 @@ namespace EnterpriseLayers.Web.Controllers {
 			var model = new HomeIndexViewModel();
 
 			//get UoW instance
-			using (var uow = UnitOfWorkFactory.Create()) {
+			string dbPlatform = ConfigurationManager.AppSettings["databasePlatform"];
+			using (var uow = UnitOfWorkFactory.Create(dbPlatform)) {
 				//get services
 				var customerService = new CustomerService(uow);
 				var contactTypeService = new ContactTypeService(uow);
 
 				//pull some random data
 				model = customerService.GetHomeIndexViewModel(
-					latest: 50, 
+					latest: 50,
 					validCustomerID: 29825);
 
 				//do some other random stuff w/ data

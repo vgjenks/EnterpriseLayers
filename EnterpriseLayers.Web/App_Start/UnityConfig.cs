@@ -1,21 +1,19 @@
 using System;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 using EnterpriseLayers.Contract.Repository;
 using EnterpriseLayers.Repository;
 using EnterpriseLayers.Model.Domain;
 using EnterpriseLayers.Contract.Service;
 using EnterpriseLayers.Service;
 using EnterpriseLayers.Contract.DataAccess;
-using EnterpriseLayers.Data.Context;
+using EnterpriseLayers.Data.Access;
+using System.Configuration;
 
-namespace EnterpriseLayers.Web.App_Start
-{
-    /// <summary>
-    /// Specifies the Unity configuration for the main container.
-    /// </summary>
-    public class UnityConfig
-    {
+namespace EnterpriseLayers.Web.App_Start {
+	/// <summary>
+	/// Specifies the Unity configuration for the main container.
+	/// </summary>
+	public class UnityConfig {
         #region Unity Container
         private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
         {
@@ -37,15 +35,23 @@ namespace EnterpriseLayers.Web.App_Start
         /// <param name="container">The unity container to configure.</param>
         /// <remarks>There is no need to register concrete types such as controllers or API controllers (unless you want to 
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
-        public static void RegisterTypes(IUnityContainer container)
-        {
+        public static void RegisterTypes(IUnityContainer container) {
 			// NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
 			// container.LoadConfiguration();
 
 			// TODO: Register your types here
-			//container.RegisterType<IRepository<Customer>, GenericRepository<Customer>>();
-			//container.RegisterType<ICustomerService, CustomerService>();
-			//container.RegisterType<IDbContext, EnterpriseLayersContext>();
+			//container.RegisterType<Mapper, Mapper>();
+			container.RegisterType<IUnitOfWork>(
+				new PerRequestLifetimeManager(),
+				new InjectionFactory(c => {
+					string dbPlatform = ConfigurationManager.AppSettings["databasePlatform"];
+					var uow = new UnitOfWorkFactory(dbPlatform);
+					return uow.UnitOfWork;
+				})
+			);
+			container.RegisterType<IRepository<ProductModel>, GenericRepository<ProductModel>>();
+			container.RegisterType<IRepository<Illustration>, GenericRepository<Illustration>>();
+			container.RegisterType<IProductModelService, ProductModelService>();
 		}
 	}
 }

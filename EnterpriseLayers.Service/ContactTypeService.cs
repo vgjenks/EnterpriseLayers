@@ -10,14 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public class ContactTypeService : IContactTypeService {
+	public class ContactTypeService : UnitOfWorkService, IContactTypeService {
 		private IRepository<ContactType> _contactTypeRepository;
 
-		public ContactTypeService(IUnitOfWork unitOfWork) {
-			if (unitOfWork == null)
-				throw new ArgumentNullException("Missing Unit of Work Implementation");
-
-			_contactTypeRepository = new GenericRepository<ContactType>(unitOfWork);
+		public ContactTypeService(IUnitOfWork uow) : base(uow) {
+			_contactTypeRepository = new GenericRepository<ContactType>(uow);
 		}
 
 		public List<ContactType> GetAll() {

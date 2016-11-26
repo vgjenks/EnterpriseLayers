@@ -1,22 +1,17 @@
 ﻿using EnterpriseLayers.Contract.Repository;
+using EnterpriseLayers.Contract.DataAccess;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using EnterpriseLayers.Data.Context;
-using System.Data.Entity.Infrastructure;
-using EnterpriseLayers.Contract.DataAccess;
 
 namespace EnterpriseLayers.Repository {
 	public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class {
-		internal EnterpriseLayersContext _dbContext;
+		internal DbContext _dbContext;
 		internal DbSet<TEntity> _dbSet;
 
 		public GenericRepository(IUnitOfWork unitOfWork) {
-			_dbContext = unitOfWork.Context as EnterpriseLayersContext;
+			_dbContext = unitOfWork.Context;
 			_dbSet = _dbContext.Set<TEntity>();
 		}
 

@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\EnterpriseLayersContext.cs" />
+    <Compile Include="Context\MsSqlEFContext.cs" />
+    <Compile Include="Context\MySqlEFContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

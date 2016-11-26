@@ -10,16 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
-	public class SalesOrderService : ISalesOrderService {
+	public class SalesOrderService : UnitOfWorkService, ISalesOrderService {
 		private IRepository<SalesOrderHeader> _salesOrderHeaderRepository;
 		private IRepository<SalesOrderDetail> _salesOrderDetailRepository;
 
-		public SalesOrderService(IUnitOfWork unitOfWork) {
-			if (unitOfWork == null)
-				throw new ArgumentNullException("Missing Unit of Work Implementation");
-
-			_salesOrderHeaderRepository = new GenericRepository<SalesOrderHeader>(unitOfWork);
-			_salesOrderDetailRepository = new GenericRepository<SalesOrderDetail>(unitOfWork);
+		public SalesOrderService(IUnitOfWork uow) : base(uow) {
+			_salesOrderHeaderRepository = new GenericRepository<SalesOrderHeader>(uow);
+			_salesOrderDetailRepository = new GenericRepository<SalesOrderDetail>(uow);
 		}
 	}
 }
