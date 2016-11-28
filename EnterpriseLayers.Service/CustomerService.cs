@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
 	public class CustomerService : UnitOfWorkService, ICustomerService {
-		private IRepository<Customer> _customerRepository;
-		private IRepository<SalesOrderHeader> _salesOrderRepository;
+		private IRepository<Customer> _customerRepo;
+		private IRepository<SalesOrderHeader> _salesOrderRepo;
 
 		public CustomerService(IUnitOfWork uow) : base(uow) {
-			_customerRepository = new GenericRepository<Customer>(uow);
-			_salesOrderRepository = new GenericRepository<SalesOrderHeader>(uow);
+			_customerRepo = new GenericRepository<Customer>(uow);
+			_salesOrderRepo = new GenericRepository<SalesOrderHeader>(uow);
 		}
 
 		public List<Customer> GetLastCustomers(int take = 10) {
-			return _customerRepository
+			return _customerRepo
 				.Get(c => c.Person)
 				.OrderByDescending(c => c.CustomerID)
 				.Take(take)
@@ -31,8 +31,8 @@ namespace EnterpriseLayers.Service {
 
 		public Customer GetValidCustomer(int customerID) {
 			Customer customer = null;
-			if (_salesOrderRepository.All.Count(x => x.CustomerID == customerID) > 0) {
-				customer = _customerRepository.Find(customerID);
+			if (_salesOrderRepo.All.Count(x => x.CustomerID == customerID) > 0) {
+				customer = _customerRepo.Find(customerID);
 			}
 			return customer;
 		}

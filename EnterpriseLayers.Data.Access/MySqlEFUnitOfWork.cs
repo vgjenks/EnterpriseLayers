@@ -1,7 +1,8 @@
-﻿using System;
-using EnterpriseLayers.Contract.DataAccess;
+﻿using EnterpriseLayers.Contract.DataAccess;
 using EnterpriseLayers.Data.Context;
+using EnterpriseLayers.Exception;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace EnterpriseLayers.Data.Access {
 	public class MySqlEFUnitOfWork : IUnitOfWork {
@@ -11,11 +12,15 @@ namespace EnterpriseLayers.Data.Access {
 			Context = new MySqlEFContext();
 		}
 
-		public void Dispose() {
-			Context.SaveChanges();
+		public void SaveChanges() {
+			try {
+				Context.SaveChanges();
+			} catch (DbEntityValidationException ex) {
+				throw new DataException(ex);
+			}
 		}
 
-		public void SaveChanges() {
+		public void Dispose() {
 			Context.Dispose();
 		}
 	}
