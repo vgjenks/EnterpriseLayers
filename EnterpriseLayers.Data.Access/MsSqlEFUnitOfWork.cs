@@ -1,6 +1,8 @@
 ﻿using EnterpriseLayers.Contract.DataAccess;
 using EnterpriseLayers.Data.Context;
+using EnterpriseLayers.Exception;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace EnterpriseLayers.Data.Access {
 	public class MsSqlEFUnitOfWork : IUnitOfWork {
@@ -11,7 +13,11 @@ namespace EnterpriseLayers.Data.Access {
 		}
 
 		public void SaveChanges() {
-			Context.SaveChanges();
+			try {
+				Context.SaveChanges();
+			} catch (DbEntityValidationException ex) {
+				throw new DataException(ex);
+			}
 		}
 
 		public void Dispose() {

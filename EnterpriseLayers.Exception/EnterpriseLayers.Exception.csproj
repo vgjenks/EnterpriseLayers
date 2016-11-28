@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB352039-39CB-4947-AA97-045015CA313D}</ProjectGuid>
+    <ProjectGuid>{1FF65061-C339-4476-B847-6A391938D22F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnterpriseLayers.Data.Access</RootNamespace>
-    <AssemblyName>EnterpriseLayers.Data.Access</AssemblyName>
+    <RootNamespace>EnterpriseLayers.Exception</RootNamespace>
+    <AssemblyName>EnterpriseLayers.Exception</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,31 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdoUnitOfWork.cs" />
-    <Compile Include="CommandExtensions.cs" />
-    <Compile Include="MsSqlEFUnitOfWork.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MySqlEFUnitOfWork.cs" />
+    <Compile Include="DataException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWorkFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EnterpriseLayers.Contract\EnterpriseLayers.Contract.csproj">
-      <Project>{29D61866-5536-4DE7-8793-3C36500851AE}</Project>
-      <Name>EnterpriseLayers.Contract</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EnterpriseLayers.Data\EnterpriseLayers.Data.csproj">
-      <Project>{57D5DD73-E102-4BF2-B4C9-4BF62C557DC3}</Project>
-      <Name>EnterpriseLayers.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EnterpriseLayers.Exception\EnterpriseLayers.Exception.csproj">
-      <Project>{1FF65061-C339-4476-B847-6A391938D22F}</Project>
-      <Name>EnterpriseLayers.Exception</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EnterpriseLayers.Utility\EnterpriseLayers.Utility.csproj">
-      <Project>{5EDEC514-67E9-44B9-8AA2-61B3BB6E9BB1}</Project>
-      <Name>EnterpriseLayers.Utility</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

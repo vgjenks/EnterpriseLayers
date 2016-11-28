@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 
 namespace EnterpriseLayers.Web.Controllers {
-	public class ProductModelController : Controller /*: UnitOfWorkController*/ {
+	public class ProductModelController : BaseController /*: UnitOfWorkController*/ {
 		private IProductModelService _productModelService;
 
 		/**
