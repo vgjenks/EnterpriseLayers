@@ -11,7 +11,7 @@ namespace EnterpriseLayers.Data.Access {
 
 		public static IUnitOfWork Create(string databasePlatform) {
 			/**
-			 * Conditional logic to choose which UoW
+			 * Factory method to select which UoW
 			 * implementation to return (ADO, EF, etc.)
 			 **/
 			IUnitOfWork uow = null;

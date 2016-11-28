@@ -2,6 +2,9 @@
 using System.Web.Mvc;
 
 namespace EnterpriseLayers.Web.Controllers {
+	/// <summary>
+	/// Example controller with full architecture, including dependency injection
+	/// </summary>
 	public class ProductModelController : BaseController /*: UnitOfWorkController*/ {
 		private IProductModelService _productModelService;
 

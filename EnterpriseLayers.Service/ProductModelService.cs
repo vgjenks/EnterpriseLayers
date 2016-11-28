@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace EnterpriseLayers.Service {
+	/// <summary>
+	/// Service method with full architecture including dependency injection
+	/// </summary>
 	public class ProductModelService : IProductModelService {
 		private IRepository<ProductModel> _productModelRepo;
 		private IRepository<Illustration> _illustrationRepo;

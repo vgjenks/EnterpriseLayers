@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EnterpriseLayers.Service {
+	/// <summary>
+	/// Example of services architecture without dependency injection
+	/// </summary>
 	public class CustomerService : UnitOfWorkService, ICustomerService {
 		private IRepository<Customer> _customerRepo;
 		private IRepository<SalesOrderHeader> _salesOrderRepo;
