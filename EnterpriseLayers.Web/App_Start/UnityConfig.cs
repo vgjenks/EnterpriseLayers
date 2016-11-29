@@ -8,6 +8,8 @@ using EnterpriseLayers.Service;
 using EnterpriseLayers.Contract.DataAccess;
 using EnterpriseLayers.Data.Access;
 using System.Configuration;
+using Microsoft.Practices.Unity.Mvc;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 namespace EnterpriseLayers.Web.App_Start {
 	/// <summary>
@@ -39,10 +41,13 @@ namespace EnterpriseLayers.Web.App_Start {
 			// NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
 			// container.LoadConfiguration();
 
+			DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
+
 			// TODO: Register your types here
 			//container.RegisterType<Mapper, Mapper>();
 			container.RegisterType<IUnitOfWork>(
 				new PerRequestLifetimeManager(),
+				//new HierarchialLifetimeManager(),
 				new InjectionFactory(c => {
 					string dbPlatform = ConfigurationManager.AppSettings["databasePlatform"];
 					var uow = new UnitOfWorkFactory(dbPlatform);
