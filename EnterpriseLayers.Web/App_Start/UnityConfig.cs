@@ -41,21 +41,24 @@ namespace EnterpriseLayers.Web.App_Start {
 			// NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
 			// container.LoadConfiguration();
 
+			//***IMPORTANT! required by PerRequestLifetimeManager to properly dispose of context at end of request
 			DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
 
-			// TODO: Register your types here
-			//container.RegisterType<Mapper, Mapper>();
+			//Unit of Work per-request in MVC
 			container.RegisterType<IUnitOfWork>(
 				new PerRequestLifetimeManager(),
-				//new HierarchialLifetimeManager(),
 				new InjectionFactory(c => {
 					string dbPlatform = ConfigurationManager.AppSettings["databasePlatform"];
 					var uow = new UnitOfWorkFactory(dbPlatform);
 					return uow.UnitOfWork;
 				})
 			);
+
+			//repositories
 			container.RegisterType<IRepository<ProductModel>, GenericRepository<ProductModel>>();
 			container.RegisterType<IRepository<Illustration>, GenericRepository<Illustration>>();
+
+			//services
 			container.RegisterType<IProductModelService, ProductModelService>();
 		}
 	}
